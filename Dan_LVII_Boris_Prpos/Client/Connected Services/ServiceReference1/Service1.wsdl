@@ -8,6 +8,12 @@
       <xsd:import schemaLocation="http://localhost:51147/Service1.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Service" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IService1_anything_InputMessage">
+    <wsdl:part name="parameters" element="tns:anything" />
+  </wsdl:message>
+  <wsdl:message name="IService1_anything_OutputMessage">
+    <wsdl:part name="parameters" element="tns:anythingResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_GetData_InputMessage">
     <wsdl:part name="parameters" element="tns:GetData" />
   </wsdl:message>
@@ -26,13 +32,41 @@
   <wsdl:message name="IService1_WriteFile_OutputMessage">
     <wsdl:part name="parameters" element="tns:WriteFileResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_FindMinimumOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:FindMinimumOrder" />
+  </wsdl:message>
+  <wsdl:message name="IService1_FindMinimumOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindMinimumOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CreateNewItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewItem" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CreateNewItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewItemResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_GetDataUsingDataContract_InputMessage">
     <wsdl:part name="parameters" element="tns:GetDataUsingDataContract" />
   </wsdl:message>
   <wsdl:message name="IService1_GetDataUsingDataContract_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_CreateObjectList_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateObjectList" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CreateObjectList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateObjectListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_WriteObjectListToFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:WriteObjectListToFile" />
+  </wsdl:message>
+  <wsdl:message name="IService1_WriteObjectListToFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WriteObjectListToFileResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
+    <wsdl:operation name="anything">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/anything" message="tns:IService1_anything_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/anythingResponse" message="tns:IService1_anything_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetData">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetData" message="tns:IService1_GetData_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetDataResponse" message="tns:IService1_GetData_OutputMessage" />
@@ -45,13 +79,38 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/WriteFile" message="tns:IService1_WriteFile_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/WriteFileResponse" message="tns:IService1_WriteFile_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="FindMinimumOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/FindMinimumOrder" message="tns:IService1_FindMinimumOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/FindMinimumOrderResponse" message="tns:IService1_FindMinimumOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateNewItem" message="tns:IService1_CreateNewItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CreateNewItemResponse" message="tns:IService1_CreateNewItem_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetDataUsingDataContract">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetDataUsingDataContract" message="tns:IService1_GetDataUsingDataContract_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetDataUsingDataContractResponse" message="tns:IService1_GetDataUsingDataContract_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="CreateObjectList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateObjectList" message="tns:IService1_CreateObjectList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CreateObjectListResponse" message="tns:IService1_CreateObjectList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteObjectListToFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/WriteObjectListToFile" message="tns:IService1_WriteObjectListToFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/WriteObjectListToFileResponse" message="tns:IService1_WriteObjectListToFile_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="anything">
+      <soap:operation soapAction="http://tempuri.org/IService1/anything" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetData">
       <soap:operation soapAction="http://tempuri.org/IService1/GetData" style="document" />
       <wsdl:input>
@@ -79,8 +138,44 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="FindMinimumOrder">
+      <soap:operation soapAction="http://tempuri.org/IService1/FindMinimumOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewItem">
+      <soap:operation soapAction="http://tempuri.org/IService1/CreateNewItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetDataUsingDataContract">
       <soap:operation soapAction="http://tempuri.org/IService1/GetDataUsingDataContract" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateObjectList">
+      <soap:operation soapAction="http://tempuri.org/IService1/CreateObjectList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteObjectListToFile">
+      <soap:operation soapAction="http://tempuri.org/IService1/WriteObjectListToFile" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

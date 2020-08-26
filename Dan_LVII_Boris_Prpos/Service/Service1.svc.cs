@@ -9,10 +9,10 @@ using System.Text;
 
 namespace Service
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
-    // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Service1 : IService1
     {
+        public static string location = AppDomain.CurrentDomain.BaseDirectory + @"\Content.txt";
+
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
@@ -20,26 +20,68 @@ namespace Service
 
         public List<string> ReadFile()
         {
-            string location = AppDomain.CurrentDomain.BaseDirectory + @"\Content.txt";
-
-
             StreamReader sr = new StreamReader(location);
-
             string line = null;
-
             List<string> lineList = new List<string>();
-
             while ((line = sr.ReadLine()) != null)
             {
                 lineList.Add(line);
             }
-
             sr.Close();
-
             return lineList;
         }
 
+        public int FindMinimumOrder()
+        {
+            List<string> list = ReadFile();
 
+            string lastLine = list[list.Count - 1];
+
+            string[] array = lastLine.Split(' ').ToArray();
+
+            int lastNumber = Convert.ToInt32(array[0]);
+            return lastNumber;
+
+        }
+
+        public void CreateNewItem(string name,int amount,int price)
+        {
+            //Console.WriteLine("Enter name for new item:");
+
+            //string name = Console.ReadLine();
+
+            //while (String.IsNullOrEmpty(name))
+            //{
+            //    Console.WriteLine("Name can not be empty, please try again:");
+            //    name = Console.ReadLine();
+            //}
+
+            //Console.WriteLine("Insert amount for new item:");
+            //int amount;
+            //string inputAmount = Console.ReadLine();
+            //bool tryParse = Int32.TryParse(inputAmount,out amount);
+            //while (!tryParse || amount<0)
+            //{
+            //    Console.WriteLine("Amount must be positive number. Please try again:");
+            //    inputAmount = Console.ReadLine();
+            //}
+
+            //Console.WriteLine("Insert price for new item:");
+            //int price;
+            //string inputPrice = Console.ReadLine();
+            //bool tryPrice = Int32.TryParse(inputPrice, out price);
+            //while (!tryPrice || price<0)
+            //{
+            //    Console.WriteLine("Price must be positive number:");
+            //    inputPrice = Console.ReadLine();
+            //}
+            int order = FindMinimumOrder();
+            Item item = new Item(order,name, amount, price);
+            item.WriteToFile(order);
+           
+        }
+        
+        
 
 
 
@@ -63,7 +105,50 @@ namespace Service
 
         public void WriteFile()
         {
-            throw new NotImplementedException();
+           
+           
+        }
+
+        public void anything()
+        {
+            Console.WriteLine("sta bilo");
+        }
+
+        public List<Item> CreateObjectList()
+        {
+            List<string> lineList = ReadFile();
+            List<Item> itemList = new List<Item>();
+
+            for (int  i = 0;  i<lineList.Count ;  i++)
+            {
+                string[] array = lineList[i].Split(' ').ToArray();
+                int order = Convert.ToInt32(array[0]);
+                string name = array[1];
+                int amount = Convert.ToInt32(array[2]);
+                int price = Convert.ToInt32(array[3]);
+                Item item = new Item(order, name, amount, price);
+                itemList.Add(item);
+            }
+
+            return itemList;
+        }
+
+        public void WriteObjectListToFile(List<Item> list)
+        {
+            //List<Item> itemList = CreateObjectList();
+
+            using (FileStream fs = File.Open(location, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+            {
+                lock (fs)
+                {
+                    fs.SetLength(0);
+                }
+            }
+
+            foreach (var item in list)
+            {
+                item.WriteToFileID();
+            }
         }
     }
 }
