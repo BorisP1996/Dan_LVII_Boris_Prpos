@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -17,6 +18,34 @@ namespace Service
             return string.Format("You entered: {0}", value);
         }
 
+        public List<string> ReadFile()
+        {
+            string location = AppDomain.CurrentDomain.BaseDirectory + @"\Content.txt";
+
+
+            StreamReader sr = new StreamReader(location);
+
+            string line = null;
+
+            List<string> lineList = new List<string>();
+
+            while ((line = sr.ReadLine()) != null)
+            {
+                lineList.Add(line);
+            }
+
+            sr.Close();
+
+            return lineList;
+        }
+
+
+
+
+
+
+
+
         public CompositeType GetDataUsingDataContract(CompositeType composite)
         {
             if (composite == null)
@@ -28,6 +57,13 @@ namespace Service
                 composite.StringValue += "Suffix";
             }
             return composite;
+        }
+
+       
+
+        public void WriteFile()
+        {
+            throw new NotImplementedException();
         }
     }
 }

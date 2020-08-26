@@ -17,6 +17,12 @@ namespace Service
         string GetData(int value);
 
         [OperationContract]
+        List<string> ReadFile();
+
+        [OperationContract]
+        void WriteFile();
+
+        [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
 
         // TODO: Add your service operations here
