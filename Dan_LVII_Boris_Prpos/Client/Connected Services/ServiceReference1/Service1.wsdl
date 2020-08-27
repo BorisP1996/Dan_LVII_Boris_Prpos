@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:51147/Service1.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:51147/Service1.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:51147/Service1.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:51147/Service1.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Service" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService1_anything_InputMessage">
+    <wsdl:part name="parameters" element="tns:anything" />
+  </wsdl:message>
+  <wsdl:message name="IService1_anything_OutputMessage">
+    <wsdl:part name="parameters" element="tns:anythingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetData" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_ReadFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadFile" />
+  </wsdl:message>
+  <wsdl:message name="IService1_ReadFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_WriteFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:WriteFile" />
+  </wsdl:message>
+  <wsdl:message name="IService1_WriteFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WriteFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_WriteBillToFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:WriteBillToFile" />
+  </wsdl:message>
+  <wsdl:message name="IService1_WriteBillToFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WriteBillToFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CreateBill_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateBill" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CreateBill_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateBillResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_FindMinimumOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:FindMinimumOrder" />
+  </wsdl:message>
+  <wsdl:message name="IService1_FindMinimumOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindMinimumOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CreateNewItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewItem" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CreateNewItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNewItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetDataUsingDataContract_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataUsingDataContract" />
+  </wsdl:message>
+  <wsdl:message name="IService1_GetDataUsingDataContract_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CreateObjectList_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateObjectList" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CreateObjectList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateObjectListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_WriteObjectListToFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:WriteObjectListToFile" />
+  </wsdl:message>
+  <wsdl:message name="IService1_WriteObjectListToFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WriteObjectListToFileResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService1">
+    <wsdl:operation name="anything">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/anything" message="tns:IService1_anything_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/anythingResponse" message="tns:IService1_anything_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetData" message="tns:IService1_GetData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetDataResponse" message="tns:IService1_GetData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/ReadFile" message="tns:IService1_ReadFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/ReadFileResponse" message="tns:IService1_ReadFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/WriteFile" message="tns:IService1_WriteFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/WriteFileResponse" message="tns:IService1_WriteFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteBillToFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/WriteBillToFile" message="tns:IService1_WriteBillToFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/WriteBillToFileResponse" message="tns:IService1_WriteBillToFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateBill">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateBill" message="tns:IService1_CreateBill_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CreateBillResponse" message="tns:IService1_CreateBill_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FindMinimumOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/FindMinimumOrder" message="tns:IService1_FindMinimumOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/FindMinimumOrderResponse" message="tns:IService1_FindMinimumOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewItem">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateNewItem" message="tns:IService1_CreateNewItem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CreateNewItemResponse" message="tns:IService1_CreateNewItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataUsingDataContract">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetDataUsingDataContract" message="tns:IService1_GetDataUsingDataContract_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/GetDataUsingDataContractResponse" message="tns:IService1_GetDataUsingDataContract_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateObjectList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateObjectList" message="tns:IService1_CreateObjectList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CreateObjectListResponse" message="tns:IService1_CreateObjectList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteObjectListToFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/WriteObjectListToFile" message="tns:IService1_WriteObjectListToFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/WriteObjectListToFileResponse" message="tns:IService1_WriteObjectListToFile_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="anything">
+      <soap:operation soapAction="http://tempuri.org/IService1/anything" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetData">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadFile">
+      <soap:operation soapAction="http://tempuri.org/IService1/ReadFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteFile">
+      <soap:operation soapAction="http://tempuri.org/IService1/WriteFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteBillToFile">
+      <soap:operation soapAction="http://tempuri.org/IService1/WriteBillToFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateBill">
+      <soap:operation soapAction="http://tempuri.org/IService1/CreateBill" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindMinimumOrder">
+      <soap:operation soapAction="http://tempuri.org/IService1/FindMinimumOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNewItem">
+      <soap:operation soapAction="http://tempuri.org/IService1/CreateNewItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataUsingDataContract">
+      <soap:operation soapAction="http://tempuri.org/IService1/GetDataUsingDataContract" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateObjectList">
+      <soap:operation soapAction="http://tempuri.org/IService1/CreateObjectList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteObjectListToFile">
+      <soap:operation soapAction="http://tempuri.org/IService1/WriteObjectListToFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="BasicHttpBinding_IService1" binding="tns:BasicHttpBinding_IService1">
+      <soap:address location="http://localhost:51147/Service1.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
