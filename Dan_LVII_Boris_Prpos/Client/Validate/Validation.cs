@@ -7,9 +7,12 @@ using System.Threading.Tasks;
 
 namespace Client.Validate
 {
+    /// <summary>
+    /// Class contains validation methods =>later I changed the code and did not use them anywhere
+    /// </summary>
     class Validation
     {
-        public int ValidateListSelection(List<Item> list,string selectionInput)
+        public int ValidateListSelection(List<Item> list, string selectionInput)
         {
             try
             {
@@ -39,16 +42,14 @@ namespace Client.Validate
                 }
 
                 return selection;
-           
+
             }
             catch (Exception ex)
             {
 
-                //Console.WriteLine(ex.ToString());
                 return 0;
             }
         }
-
         public bool ValidateIntegerInput(string input)
         {
             try

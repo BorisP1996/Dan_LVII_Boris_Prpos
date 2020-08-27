@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Web;
 
 namespace Service
 {
+    /// <summary>
+    /// Class that represents "objects" (basicaly they are lines of text in file)
+    /// </summary>
     public class Item
     {
         public static string location = AppDomain.CurrentDomain.BaseDirectory + @"\Content.txt";

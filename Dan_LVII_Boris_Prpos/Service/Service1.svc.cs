@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
 
 namespace Service
 {
     public class Service1 : IService1
     {
+        //path of the main file
         public static string location = AppDomain.CurrentDomain.BaseDirectory + @"\Content.txt";
+        //counter used for naming files
         static int counter = 0;
 
         public string GetData(int value)
@@ -19,6 +17,10 @@ namespace Service
             return string.Format("You entered: {0}", value);
         }
 
+        /// <summary>
+        /// Method takes file content and creates List<string>
+        /// </summary>
+        /// <returns></returns>
         public List<string> ReadFile()
         {
             StreamReader sr = new StreamReader(location);
@@ -32,6 +34,10 @@ namespace Service
             return lineList;
         }
 
+        /// <summary>
+        /// Find last (the biggest) order number in file
+        /// </summary>
+        /// <returns></returns>
         public int FindMinimumOrder()
         {
             List<string> list = ReadFile();
@@ -44,50 +50,18 @@ namespace Service
             return lastNumber;
 
         }
-
+        /// <summary>
+        /// Create new item and save it into file
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="amount"></param>
+        /// <param name="price"></param>
         public void CreateNewItem(string name, int amount, int price)
-        {
-            //Console.WriteLine("Enter name for new item:");
-
-            //string name = Console.ReadLine();
-
-            //while (String.IsNullOrEmpty(name))
-            //{
-            //    Console.WriteLine("Name can not be empty, please try again:");
-            //    name = Console.ReadLine();
-            //}
-
-            //Console.WriteLine("Insert amount for new item:");
-            //int amount;
-            //string inputAmount = Console.ReadLine();
-            //bool tryParse = Int32.TryParse(inputAmount,out amount);
-            //while (!tryParse || amount<0)
-            //{
-            //    Console.WriteLine("Amount must be positive number. Please try again:");
-            //    inputAmount = Console.ReadLine();
-            //}
-
-            //Console.WriteLine("Insert price for new item:");
-            //int price;
-            //string inputPrice = Console.ReadLine();
-            //bool tryPrice = Int32.TryParse(inputPrice, out price);
-            //while (!tryPrice || price<0)
-            //{
-            //    Console.WriteLine("Price must be positive number:");
-            //    inputPrice = Console.ReadLine();
-            //}
+        {           
             int order = FindMinimumOrder();
             Item item = new Item(order, name, amount, price);
             item.WriteToFile(order);
-
         }
-
-
-
-
-
-
-
 
         public CompositeType GetDataUsingDataContract(CompositeType composite)
         {
@@ -101,20 +75,21 @@ namespace Service
             }
             return composite;
         }
-
-
-
+        //WCF creates many problems with methods=>so I was trying all kinds of different stuff, that's the reason for these nonsense methods
         public void WriteFile()
         {
 
 
         }
-
         public void anything()
         {
             Console.WriteLine("sta bilo");
         }
 
+        /// <summary>
+        /// Take content of file and create list of objects
+        /// </summary>
+        /// <returns></returns>
         public List<Item> CreateObjectList()
         {
             List<string> lineList = ReadFile();
@@ -133,11 +108,12 @@ namespace Service
 
             return itemList;
         }
-
+        /// <summary>
+        /// This method will be called whenever changes are made. First it clears the content of the file and then writes new state
+        /// </summary>
+        /// <param name="list"></param>
         public void WriteObjectListToFile(List<Item> list)
         {
-            //List<Item> itemList = CreateObjectList();
-
             using (FileStream fs = File.Open(location, FileMode.OpenOrCreate, FileAccess.ReadWrite))
             {
                 lock (fs)
@@ -151,29 +127,35 @@ namespace Service
                 item.WriteToFileID();
             }
         }
-
+        //another useless method
         public void WriteBillToFile()
         {
             //string location = AppDomain.CurrentDomain.BaseDirectory + @"\Content.txt";
         }
-
-
+        /// <summary>
+        /// Method creates bill,name of the file contains static counter and timestamp
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="total"></param>
         public void CreateBill(List<string> list, int total)
         {
             string count = counter.ToString();
             string timeStamp = DateTime.Now.ToString("dd-MM-yyy_H:mm:ss");
-
+            //create name of the file (asked in task specification)
             string location = AppDomain.CurrentDomain.BaseDirectory+ @"\Racun" + "_" + count +"_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + "_" + DateTime.Now.Hour.ToString() + "_" + DateTime.Now.Minute.ToString() + ".txt";
             
             StreamWriter sw = new StreamWriter(location);
-
+            //insert timestamp into file=>create one bill and than look at file content=>it will be clear to you
             sw.WriteLine(timeStamp);
+            //write elements of the list
             foreach (string item in list)
             {
                 sw.WriteLine(item);
             }
+            //write total price
             sw.WriteLine("Total price:{0}",total);
             sw.Close();
+            //increment counter
             counter++;
         }
     }
