@@ -12,6 +12,7 @@ namespace Service
     public class Service1 : IService1
     {
         public static string location = AppDomain.CurrentDomain.BaseDirectory + @"\Content.txt";
+        static int counter = 0;
 
         public string GetData(int value)
         {
@@ -44,7 +45,7 @@ namespace Service
 
         }
 
-        public void CreateNewItem(string name,int amount,int price)
+        public void CreateNewItem(string name, int amount, int price)
         {
             //Console.WriteLine("Enter name for new item:");
 
@@ -76,12 +77,12 @@ namespace Service
             //    inputPrice = Console.ReadLine();
             //}
             int order = FindMinimumOrder();
-            Item item = new Item(order,name, amount, price);
+            Item item = new Item(order, name, amount, price);
             item.WriteToFile(order);
-           
+
         }
-        
-        
+
+
 
 
 
@@ -101,12 +102,12 @@ namespace Service
             return composite;
         }
 
-       
+
 
         public void WriteFile()
         {
-           
-           
+
+
         }
 
         public void anything()
@@ -119,7 +120,7 @@ namespace Service
             List<string> lineList = ReadFile();
             List<Item> itemList = new List<Item>();
 
-            for (int  i = 0;  i<lineList.Count ;  i++)
+            for (int i = 0; i < lineList.Count; i++)
             {
                 string[] array = lineList[i].Split(' ').ToArray();
                 int order = Convert.ToInt32(array[0]);
@@ -149,6 +150,31 @@ namespace Service
             {
                 item.WriteToFileID();
             }
+        }
+
+        public void WriteBillToFile()
+        {
+            //string location = AppDomain.CurrentDomain.BaseDirectory + @"\Content.txt";
+        }
+
+
+        public void CreateBill(List<string> list, int total)
+        {
+            string count = counter.ToString();
+            string timeStamp = DateTime.Now.ToString("dd-MM-yyy_H:mm:ss");
+
+            string location = AppDomain.CurrentDomain.BaseDirectory+ @"\Racun" + "_" + count +"_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + "_" + DateTime.Now.Hour.ToString() + "_" + DateTime.Now.Minute.ToString() + ".txt";
+            
+            StreamWriter sw = new StreamWriter(location);
+
+            sw.WriteLine(timeStamp);
+            foreach (string item in list)
+            {
+                sw.WriteLine(item);
+            }
+            sw.WriteLine("Total price:{0}",total);
+            sw.Close();
+            counter++;
         }
     }
 }

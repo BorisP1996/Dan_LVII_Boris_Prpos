@@ -42,6 +42,18 @@ namespace Client.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/WriteFile", ReplyAction="http://tempuri.org/IService1/WriteFileResponse")]
         System.Threading.Tasks.Task WriteFileAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/WriteBillToFile", ReplyAction="http://tempuri.org/IService1/WriteBillToFileResponse")]
+        void WriteBillToFile();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/WriteBillToFile", ReplyAction="http://tempuri.org/IService1/WriteBillToFileResponse")]
+        System.Threading.Tasks.Task WriteBillToFileAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateBill", ReplyAction="http://tempuri.org/IService1/CreateBillResponse")]
+        void CreateBill(List<string> list, int total);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateBill", ReplyAction="http://tempuri.org/IService1/CreateBillResponse")]
+        System.Threading.Tasks.Task CreateBillAsync(List<string> list, int total);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/FindMinimumOrder", ReplyAction="http://tempuri.org/IService1/FindMinimumOrderResponse")]
         int FindMinimumOrder();
         
@@ -130,6 +142,22 @@ namespace Client.ServiceReference1 {
         
         public System.Threading.Tasks.Task WriteFileAsync() {
             return base.Channel.WriteFileAsync();
+        }
+        
+        public void WriteBillToFile() {
+            base.Channel.WriteBillToFile();
+        }
+        
+        public System.Threading.Tasks.Task WriteBillToFileAsync() {
+            return base.Channel.WriteBillToFileAsync();
+        }
+        
+        public void CreateBill(List<string> list, int total) {
+            base.Channel.CreateBill(list, total);
+        }
+        
+        public System.Threading.Tasks.Task CreateBillAsync(List<string> list, int total) {
+            return base.Channel.CreateBillAsync(list, total);
         }
         
         public int FindMinimumOrder() {

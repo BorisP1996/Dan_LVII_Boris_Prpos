@@ -32,6 +32,18 @@
   <wsdl:message name="IService1_WriteFile_OutputMessage">
     <wsdl:part name="parameters" element="tns:WriteFileResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_WriteBillToFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:WriteBillToFile" />
+  </wsdl:message>
+  <wsdl:message name="IService1_WriteBillToFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WriteBillToFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CreateBill_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateBill" />
+  </wsdl:message>
+  <wsdl:message name="IService1_CreateBill_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateBillResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_FindMinimumOrder_InputMessage">
     <wsdl:part name="parameters" element="tns:FindMinimumOrder" />
   </wsdl:message>
@@ -78,6 +90,14 @@
     <wsdl:operation name="WriteFile">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/WriteFile" message="tns:IService1_WriteFile_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/WriteFileResponse" message="tns:IService1_WriteFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteBillToFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/WriteBillToFile" message="tns:IService1_WriteBillToFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/WriteBillToFileResponse" message="tns:IService1_WriteBillToFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateBill">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateBill" message="tns:IService1_CreateBill_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/CreateBillResponse" message="tns:IService1_CreateBill_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="FindMinimumOrder">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/FindMinimumOrder" message="tns:IService1_FindMinimumOrder_InputMessage" />
@@ -131,6 +151,24 @@
     </wsdl:operation>
     <wsdl:operation name="WriteFile">
       <soap:operation soapAction="http://tempuri.org/IService1/WriteFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteBillToFile">
+      <soap:operation soapAction="http://tempuri.org/IService1/WriteBillToFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateBill">
+      <soap:operation soapAction="http://tempuri.org/IService1/CreateBill" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -25,6 +25,12 @@ namespace Service
         void WriteFile();
 
         [OperationContract]
+        void WriteBillToFile();
+
+        [OperationContract]
+        void CreateBill(List<string> list, int total);
+
+        [OperationContract]
         int FindMinimumOrder();
 
         [OperationContract]
