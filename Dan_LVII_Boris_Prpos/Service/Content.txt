@@ -1,4 +1,4 @@
-1 Jaje 28 35
+1 Jaje 27 35
 2 Meso 46 430
 3 Jelen_pivo 77 85
 4 Brasno 80 230
