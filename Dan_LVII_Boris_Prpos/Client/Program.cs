@@ -26,9 +26,9 @@ namespace Client
                 Console.WriteLine("6. Create bill");
                 Console.WriteLine("7. Exit");
                 Console.WriteLine("\nPick one option from the list:\n");
-                string pick;
+                string pick = Console.ReadLine();
                 //this switch case contains mainly validation input...every method is declared in service and called via "proxy" object
-                switch (pick=Console.ReadLine())
+                switch (pick)
                 {
                     case "1":
                         //display list of objects
@@ -230,14 +230,13 @@ namespace Client
                         }                               
                         break;
                     case "7":
-                        work = true;
+                        Environment.Exit(0);
                         break;
                     default:
                         Console.WriteLine("Invalid input");
                         break;
                 }
-                Console.ReadKey();
-                //
+               
             }
         }
         /// <summary>
