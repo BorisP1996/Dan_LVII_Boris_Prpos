@@ -1,5 +1,5 @@
 1 Jaje 27 35
-2 Meso 46 430
+2 Meso 41 50
 3 Jelen_pivo 77 85
 4 Brasno 80 230
 5 Kolacici 888 99
